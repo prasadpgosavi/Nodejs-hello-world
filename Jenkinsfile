@@ -18,11 +18,7 @@ pipeline {
             }
         }
         stage('Start Application'){
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "pankaj"
-            }
+            
             steps {
                 sh 'npm start'
             }
