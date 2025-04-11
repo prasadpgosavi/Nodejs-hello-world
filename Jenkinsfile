@@ -1,26 +1,27 @@
+@Library('nodejs-pipeline-lib') _
+
 pipeline {
     agent any
-    // tools (nodejs "nodejs")
+
     stages {
-        stage('Clone Repository'){
+        stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/prasadpgosavi/Nodejs-hello-world.git'
+                cloneRepo(repoUrl: 'https://github.com/prasadpgosavi/Nodejs-hello-world.git')
             }
         }
-        stage('Install Dependencies'){
+        stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                installDependencies()
             }
         }
-        stage('Perform API testing'){
+        stage('Perform API Testing') {
             steps {
-                sh 'npm test'
+                runTests()
             }
         }
-        stage('Start Application'){
-            
+        stage('Start Application') {
             steps {
-                sh 'npm start'
+                startApp()
             }
         }
     }
